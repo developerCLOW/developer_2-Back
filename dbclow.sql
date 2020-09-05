@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Jul 2020 pada 08.41
+-- Waktu pembuatan: 05 Sep 2020 pada 07.58
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.2
 
@@ -31,11 +31,11 @@ SET time_zone = "+00:00";
 CREATE TABLE `tblartikel` (
   `idartikel` int(11) NOT NULL,
   `idkategori` int(11) NOT NULL,
+  `idcreator` int(11) NOT NULL,
   `tanggal` date NOT NULL,
   `gambar` varchar(225) NOT NULL,
   `judul` text NOT NULL,
   `ketjudul` text NOT NULL,
-  `subjudul` text NOT NULL,
   `isi` text NOT NULL,
   `quotes` text NOT NULL,
   `kesimpulan` text NOT NULL
@@ -45,8 +45,8 @@ CREATE TABLE `tblartikel` (
 -- Dumping data untuk tabel `tblartikel`
 --
 
-INSERT INTO `tblartikel` (`idartikel`, `idkategori`, `tanggal`, `gambar`, `judul`, `ketjudul`, `subjudul`, `isi`, `quotes`, `kesimpulan`) VALUES
-(1, 2, '2020-07-26', 'gambar.jpg', 'Cara Mematikan Handphone', 'Disini menjelaskan bagaimana cara mematikan handphone untuk pemula. Cocok untuk ibu-ibu yang baru belajar android. ', 'Untuk Emak-Emak', 'Lorem ipsum dolor sit amet consectetur adipicising elit set do eiusmod aliqua.', 'Jangan lupa beri tau mak anda tentang tutorial ini', 'Jadi, jika anda tidak bisa mematikan handphone. Anda bisa melihat tutorial ini.');
+INSERT INTO `tblartikel` (`idartikel`, `idkategori`, `idcreator`, `tanggal`, `gambar`, `judul`, `ketjudul`, `isi`, `quotes`, `kesimpulan`) VALUES
+(1, 2, 0, '2020-07-26', 'gambar.jpg', 'Cara Mematikan Handphone', 'Disini menjelaskan bagaimana cara mematikan handphone untuk pemula. Cocok untuk ibu-ibu yang baru belajar android. ', 'Lorem ipsum dolor sit amet consectetur adipicising elit set do eiusmod aliqua.', 'Jangan lupa beri tau mak anda tentang tutorial ini', 'Jadi, jika anda tidak bisa mematikan handphone. Anda bisa melihat tutorial ini.');
 
 -- --------------------------------------------------------
 
@@ -79,6 +79,7 @@ INSERT INTO `tbldeveloper` (`iddeveloper`, `nama`, `gambar`, `facebook`, `instag
 
 CREATE TABLE `tblkategori` (
   `idkategori` int(11) NOT NULL,
+  `logo` varchar(225) NOT NULL,
   `kategori` varchar(100) NOT NULL,
   `keterangan` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -87,9 +88,11 @@ CREATE TABLE `tblkategori` (
 -- Dumping data untuk tabel `tblkategori`
 --
 
-INSERT INTO `tblkategori` (`idkategori`, `kategori`, `keterangan`) VALUES
-(1, 'Musik', 'Ini keterangan musik'),
-(2, 'Elektronik', 'Ini keterangan elektronik');
+INSERT INTO `tblkategori` (`idkategori`, `logo`, `kategori`, `keterangan`) VALUES
+(1, 'fas fa-musik', 'Musik', 'Ini keterangan musik'),
+(2, 'fas fa-pc', 'Elektronik', 'Ini keterangan elektronik'),
+(3, 'fas fa-user', 'Orang', 'Ini keterangan Orang'),
+(5, 'fas fa-earth', 'Astronomi', 'Ini keterangan Astronomi');
 
 -- --------------------------------------------------------
 
@@ -161,7 +164,7 @@ ALTER TABLE `tbldeveloper`
 -- AUTO_INCREMENT untuk tabel `tblkategori`
 --
 ALTER TABLE `tblkategori`
-  MODIFY `idkategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idkategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbluser`
